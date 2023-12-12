@@ -31,14 +31,14 @@ You can make API calls to http://localhost:8080/transaction. <br>
 include JSON RequestBody using Transaction dataclass
 
 ### To Do ###
-- Add .env file
-- Add API endpoints
 - Update Database Script to include Audit Log
 - Verify Database connection
-- Verify API endpoints with PostMan
+- Review and verify API endpoints with PostMan
+- Add exceptions for API edge cases 
 - Include Docker Volumes
 - Add Unit Tests
-- Add edge cases for API endpoints
+- Add .env file
+
 
 ### Bugs ###
 - Dependency version issues in pom.xml and kotlin-app docker container
