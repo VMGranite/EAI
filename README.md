@@ -6,9 +6,10 @@ This is a Kotlin REST API for a multi-tenant application.
 ### Technology Stack ###
 - Maven
 - Kotlin
-- Springboot
+- Springboot Framework 
 - Postgres Database
 - Dockerfile & docker-compose
+- Testing Tools: Mockito & JUnit
 
 ### Instructions ### 
 *Note:* _These instructions are specific for Mac OS._
