@@ -9,7 +9,7 @@ This is a Kotlin REST API for a multi-tenant application.
 - Springboot
 - Postgres Database
 - Dockerfile & docker-compose
-~~~~
+
 ### Instructions ### 
 *Note:* _These instructions are specific for Mac OS._
 1. Install **Maven** and **Docker** onto your machine
