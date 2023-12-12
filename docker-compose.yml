@@ -18,6 +18,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: yourpassword
     ports:
       - "5050:80"
+    depends_on:
+      - postgres
 
   kotlin-app:
     build:

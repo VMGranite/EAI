@@ -1,4 +1,4 @@
-FROM amazoncorretto:17-alpine3.17-full
+FROM openjdk:16-slim
 
 WORKDIR /app
 COPY target/EAI-1.0-SNAPSHOT.jar app.jar
