@@ -16,3 +16,6 @@ data class Transaction(
     val transactionType: String
 ) {
 }
+
+// TODO: look into Audit Log data class
+

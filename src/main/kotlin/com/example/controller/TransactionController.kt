@@ -1,6 +1,6 @@
 package com.example.controller
 
-import com.example.constant.Constants
+import com.example.constant.TransactionType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.*
 class TransactionController(private val transactionService: TransactionService) {
 
     @PostMapping("/deposit")
-    fun depositMoney(@RequestBody request: Transaction): ResponseEntity<String> {
+    fun voidDeposit(@RequestBody request: Transaction): ResponseEntity<String> {
         val transaction = Transaction(
             customerId = request.customerId,
             tenantId = request.tenantId,
             amount = request.amount,
-            transactionType = Constants.DEPOSIT
+            transactionType = TransactionType.DEPOSIT
         )
         transactionService.saveTransaction(transaction)
         val responseMessage = "Deposit successful for transaction ID: ${transaction.id}"
@@ -30,17 +30,12 @@ class TransactionController(private val transactionService: TransactionService) 
     }
 
     @PostMapping("/void-deposit")
-    fun voidDeposit(@RequestBody request: Transaction): ResponseEntity<String> {
-        val transaction = Transaction(
-            customerId = request.customerId,
-            tenantId = request.tenantId,
-            //TODO: How to specify transaction to Void and that it exists.
-            transactionId = request.transactionId,
-            amount = request.amount,
-            transactionType = Constants.VOID_DEPOSIT
-        )
-        transactionService.saveTransaction(transaction)
-        val responseMessage = "Voided Deposit successful for transaction ID: ${transaction.id}"
+    fun depositMoney(@PathVariable customerId: Long,
+                     @PathVariable tenancyId: Long,
+                     @PathVariable transactionId: Long
+    ): ResponseEntity<String> {
+        transactionService.voidTransactionByCustomerAndTenancy(customerId, tenancyId, transactionId, TransactionType.VOID_DEPOSIT)
+        val responseMessage = "Voided Deposit successful for transaction ID: $transactionId"
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage)
     }
 
@@ -50,7 +45,7 @@ class TransactionController(private val transactionService: TransactionService) 
             customerId = request.customerId,
             tenantId = request.tenantId,
             amount = request.amount,
-            transactionType = Constants.WITHDRAWAL
+            transactionType = TransactionType.WITHDRAWAL
         )
         transactionService.saveTransaction(transaction)
         val responseMessage = "Withdrawal successful for transaction ID: ${transaction.id}"
@@ -58,17 +53,12 @@ class TransactionController(private val transactionService: TransactionService) 
     }
 
     @PostMapping("/void-withdraw")
-    fun voidWithdrawal(@RequestBody request: Transaction): ResponseEntity<String> {
-        val transaction = Transaction(
-            customerId = request.customerId,
-            tenantId = request.tenantId,
-            //TODO: How to specify transaction to Void and that it exists.
-            transactionId = request.transactionId,
-            amount = request.amount,
-            transactionType = Constants.VOID_WITHDRAWAL
-        )
-        transactionService.saveTransaction(transaction)
-        val responseMessage = "Voided Withdrawal successful for transaction ID: ${transaction.id}"
+    fun voidWithdrawal(@PathVariable customerId: Long,
+                       @PathVariable tenancyId: Long,
+                       @PathVariable transactionId: Long
+                       ): ResponseEntity<String> {
+        transactionService.voidTransactionByCustomerAndTenancy(customerId, tenancyId, transactionId, TransactionType.VOID_WITHDRAWAL)
+        val responseMessage = "Voided Withdrawal successful for transaction ID: $transactionId"
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage)
     }
 

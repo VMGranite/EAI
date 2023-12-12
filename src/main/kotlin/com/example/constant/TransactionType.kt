@@ -1,6 +1,6 @@
 package com.example.constant
 
-object Constants {
+object TransactionType {
     const val DEPOSIT: String = "Deposit"
     const val WITHDRAWAL: String = "Withdrawal"
     const val VOID_WITHDRAWAL: String = "Void Withdrawal"

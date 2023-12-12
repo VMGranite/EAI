@@ -9,7 +9,7 @@ This is a Kotlin REST API for a multi-tenant application.
 - Springboot
 - Postgres Database
 - Dockerfile & docker-compose
-~~~~
+
 ### Instructions ### 
 *Note:* _These instructions are specific for Mac OS._
 1. Install **Maven** and **Docker** onto your machine
@@ -29,7 +29,6 @@ Find credentials in docker-compose.yml.
 You can make API calls to http://localhost:8080/transaction. <br>
 include JSON RequestBody using Transaction dataclass
 
-
 ### To Do ###
 - Add .env file
 - Add API endpoints
@@ -38,6 +37,7 @@ include JSON RequestBody using Transaction dataclass
 - Verify API endpoints with PostMan
 - Include Docker Volumes
 - Add Unit Tests
+- Add edge cases for API endpoints
 
 ### Bugs ###
 - Dependency version issues in pom.xml and kotlin-app docker container
