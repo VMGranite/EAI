@@ -64,8 +64,8 @@ class TransactionController(private val transactionService: TransactionService) 
 
     @GetMapping("/customer/{customerId}/tenancy/{tenancyId}/list-length/{listLength}")
     fun getTransactions(
-        @PathVariable customerId: Long,
-        @PathVariable tenancyId: Long,
+        @PathVariable customerId: String,
+        @PathVariable tenancyId: String,
         @PathVariable listLength: Int,
     ): List<Transaction> {
         return transactionService.getTransactionsByCustomerAndTenancy(customerId, tenancyId, listLength)
