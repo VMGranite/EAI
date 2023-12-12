@@ -10,11 +10,11 @@ class TransactionService(private val transactionRepository: TransactionRepositor
         transactionRepository.saveTransaction(transaction)
     }
 
-    fun getTransactionsByCustomerAndTenancy(customerId: Long, tenancyId: Long, listLength: Int): List<Transaction> {
+    fun getTransactionsByCustomerAndTenancy(customerId: String, tenancyId: String, listLength: Int): List<Transaction> {
         return transactionRepository.getRecentListOfTransactionsByCustomerIdAndTenancyId(customerId, tenancyId, listLength)
     }
 
-    fun voidTransactionByCustomerAndTenancy(customerId: Long, tenancyId: Long, transactionId: Long, voidType: String) {
+    fun voidTransactionByCustomerAndTenancy(customerId: String, tenancyId: String, transactionId: String, voidType: String) {
         transactionRepository.voidTransaction(customerId, tenancyId, transactionId, voidType)
     }
 }

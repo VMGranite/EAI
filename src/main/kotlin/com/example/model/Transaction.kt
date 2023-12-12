@@ -10,8 +10,8 @@ data class Transaction(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    var customerId: Long,
-    val tenantId: Long,
+    var customerId: String,
+    val tenantId: String,
     val amount: Double,
     val transactionType: String
 ) {

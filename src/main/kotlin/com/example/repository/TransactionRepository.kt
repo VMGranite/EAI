@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional
 
 interface TransactionRepository : JpaRepository<Transaction, Long> {
     fun saveTransaction(transaction: Transaction): Transaction
-    fun getRecentListOfTransactionsByCustomerIdAndTenancyId(customerId: Long, tenancyId: Long, listLength: Int): List<Transaction>
+    fun getRecentListOfTransactionsByCustomerIdAndTenancyId(customerId: String, tenancyId: String, listLength: Int): List<Transaction>
 
     // TODO: Look into custom AccountTransaction query which:
     //  1. checks for and finds requested transaction,
@@ -17,5 +17,5 @@ interface TransactionRepository : JpaRepository<Transaction, Long> {
     @Query("")
     @Modifying
     @Transactional
-    fun voidTransaction(customerId: Long, tenancyId: Long, transactionId: Long, voidType: String)
+    fun voidTransaction(customerId: String, tenancyId: String, transactionId: String, voidType: String)
 }

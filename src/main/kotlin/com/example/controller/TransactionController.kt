@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*
 class TransactionController(private val transactionService: TransactionService) {
 
     @PostMapping("/deposit")
-    fun voidDeposit(@RequestBody request: Transaction): ResponseEntity<String> {
+    fun depositMoney(@RequestBody request: Transaction): ResponseEntity<String> {
         val transaction = Transaction(
             customerId = request.customerId,
             tenantId = request.tenantId,
@@ -30,9 +30,9 @@ class TransactionController(private val transactionService: TransactionService) 
     }
 
     @PostMapping("/void-deposit")
-    fun depositMoney(@PathVariable customerId: Long,
-                     @PathVariable tenancyId: Long,
-                     @PathVariable transactionId: Long
+    fun voidDeposit(@PathVariable customerId: String,
+                     @PathVariable tenancyId: String,
+                     @PathVariable transactionId: String
     ): ResponseEntity<String> {
         transactionService.voidTransactionByCustomerAndTenancy(customerId, tenancyId, transactionId, TransactionType.VOID_DEPOSIT)
         val responseMessage = "Voided Deposit successful for transaction ID: $transactionId"
@@ -53,9 +53,9 @@ class TransactionController(private val transactionService: TransactionService) 
     }
 
     @PostMapping("/void-withdraw")
-    fun voidWithdrawal(@PathVariable customerId: Long,
-                       @PathVariable tenancyId: Long,
-                       @PathVariable transactionId: Long
+    fun voidWithdrawal(@PathVariable customerId: String,
+                       @PathVariable tenancyId: String,
+                       @PathVariable transactionId: String
                        ): ResponseEntity<String> {
         transactionService.voidTransactionByCustomerAndTenancy(customerId, tenancyId, transactionId, TransactionType.VOID_WITHDRAWAL)
         val responseMessage = "Voided Withdrawal successful for transaction ID: $transactionId"
